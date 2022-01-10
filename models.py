@@ -15,6 +15,16 @@ class NeighbourHood(models.Model):
 
  class Profile(models.Model):
      user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+def create_neighborhood(self):
+         self.save()
+
+     def delete_neighborhood(self):
+         self.delete()
+
+     @classmethod
+     def find_neighborhood(cls, neighborhood_id):
+         return cls.objects.filter(id=neighborhood_id)
+
 
     
           
