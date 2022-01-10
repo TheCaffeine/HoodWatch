@@ -4,9 +4,7 @@
    
  # Description  
  This project allows users to post their projects for other users to rate according to design, usability and content 
- ##  Live Link  
-  Click [View Site](https://hood-watchapp.herokuapp.com)  to visit the site
-
+ 
  ## Screenshots 
  ###### Home page
 
