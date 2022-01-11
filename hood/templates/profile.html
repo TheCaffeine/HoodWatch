@@ -2,7 +2,6 @@
 
 {% block content %}
 <div class="container">
-    <h1>Welcome to HoodWatch</h1>
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6 mt-4">
@@ -10,9 +9,11 @@
             <h5 class="text-center mt-3">{{user.username}}</h5>
             <p class="text-center"> {{user.email}}</p>
         </div>
-         <div class="col-md-3"></div>
-     </div>
-     <a href="{% url 'edit-profile' user.username %}">Edit Profile</a>
-     {% if request.user.profile.neighbourhood %}
-     <a href="{% url 'single-hood' user.profile.neighbourhood.id %}">{{ user.profile.neighbourhood.name }}</a>
-     {% endif %}
+        <div class="col-md-3"></div>
+    </div>
+    {% if request.user.profile.neighbourhood %}
+    <a href="{% url 'single-hood' user.profile.neighbourhood.id %}">{{ user.profile.neighbourhood.name }}</a>
+    {% endif %}
+
+</div>
+{% endblock %}
