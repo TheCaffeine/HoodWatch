@@ -1,3 +1,4 @@
+
 from django.db import models
 from django.contrib.auth.models import User
 from pyuploadcare.dj.models import ImageField
@@ -66,8 +67,8 @@ class Business(models.Model):
         self.delete()
 
     @classmethod
-    def find_business(cls, business_id):
-        return cls.objects.filter(id=business_id)
+    def search_business(cls, name):
+        return cls.objects.filter(name__icontains=name).all()
 
 
 class Post(models.Model):
