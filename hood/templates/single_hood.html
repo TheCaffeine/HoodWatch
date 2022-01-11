@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -16,17 +17,15 @@
                             <h6 class="card-text">
                                 <span><strong>{{hood.members.count}}</strong> Member{{hood.members.count|pluralize}}</span>
                                 | <strong>{{ hood.business.count }}</strong> Businesses | <strong>
-                                 {{ hood.hood_post.count }}</strong> Post{{ hood.hood_post.count|pluralize }}
-                             </h6>
-                             <p class="card-text">{{hood.description}}</p>
-                             <p class="card-text"><span class="text-info">Police</span>
-                             <p class="card-text"><span class="text-info">Police Tell</span>
-                                 &nbsp;<strong>{{hood.police}}</strong> |
-                                 <span class="text-info">Telephone</span> <strong>{{hood.health}}</strong></p>
-                                 <span class="text-info">Hospital Tell</span> <strong>{{hood.health}}</strong></p>
-                             <p class="card-text">Administrator: <small class="text-muted">
-                                 {{ hood.admin.user.username }}</small></p>
-                         </div>
+                                {{ hood.hood_post.count }}</strong> Post{{ hood.hood_post.count|pluralize }}
+                            </h6>
+                            <p class="card-text">{{hood.description}}</p>
+                            <p class="card-text"><span class="text-info">Police Tell</span>
+                                &nbsp;<strong>{{hood.police_number}}</strong> |
+                                <span class="text-info">Hospital Tell</span> <strong>{{hood.health_tell}}</strong></p>
+                            <p class="card-text">Administrator: <small class="text-muted">
+                                {{ hood.admin.user.username }}</small></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -101,5 +100,9 @@
             </div>
         </div>
     </div>
+
+
 </div>
+
 {% endblock %}
+       
