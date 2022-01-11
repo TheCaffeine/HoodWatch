@@ -1,4 +1,4 @@
-from .forms import SignupForm
+ from .forms import SignupForm
  from django.contrib.auth import login, authenticate
  from django.contrib.auth.decorators import login_required
  from .models import NeighbourHood
