@@ -13,6 +13,10 @@ class NeighbourHood(models.Model):
     description = models.TextField()
     health = models.IntegerField(null=True, blank=True)
     police = models.IntegerField(null=True, blank=True)
+    health_tell = models.IntegerField(null=True, blank=True)
+    police_number = models.IntegerField(null=True, blank=True)
+    health = models.IntegerField(null=True, blank=True)
+    police = models.IntegerField(null=True, blank=True)
     
     def __str__(self):
         return f'{self.name} hood'
