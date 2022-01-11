@@ -3,15 +3,16 @@
  from django.contrib.auth import login, authenticate
  from django.contrib.auth.decorators import login_required
  from .models import NeighbourHood
+ from .models import NeighbourHood, Profile
  from .forms import UpdateProfileForm
+ from django.contrib.auth.models import User
 
 
  @login_required(login_url='login')
- def index(request):
+def index(request):
     return render(request, 'index.html')
-  
-  
- def signup(request):
+ 
+def signup(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
         if form.is_valid():
@@ -38,6 +39,11 @@ def profile(request, username):
 
 
  def edit_profile(request, username):
-     return render(request, 'editprofile.html')
      form = UpdateProfileForm()
+     user = User.objects.get(username=username)
+     if request.method == 'POST':
+         form = UpdateProfileForm(request.POST)
+
+     else:
+         form = UpdateProfileForm()
      return render(request, 'editprofile.html', {'form': form})
