@@ -1,31 +1,47 @@
 {% extends 'base.html' %}
-
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="container">
     <h1>Welcome to HoodWatch</h1>
     <div class="row">
-         {% for hood in all_hoods %}
-         <div class="col-md-4">
+        {% for hood in all_hoods %}
+        <div class="col-md-4">
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+    <h1>Welcome to HoodWatch</h1>
+    <div class="row">
+        {% for hood in all_hoods %}
+        <div class="col-md-4">
              <div class="card mb-4">
-                 <img src="{{ hood.logo.url }}" class="card-img-top" alt="{{ hood.name }}">
-                 <img src="{{ hood.logo.cdn_url }}" class="card-img-top" alt="{{ hood.name }}">
+                 <img src="{{ hood.hood_logo.url }}" class="card-img-top" alt="{{ hood.name }}">
                  <div class="card-body">
-                     <h5 class="card-title">{{ hood.name }}</h5>
                      <h5 class="card-title">{{ hood.name }} ({{hood.location}}) <span style="float:right">{{hood.members.count}} member{{hood.members.count|pluralize}}</span></h5>
+                     <h5 class="card-title"><a href="{% url 'single-hood' hood.id %}">{{ hood.name }}   </a> ({{hood.location}}) <span style="float:right">{{hood.members.count}} member{{hood.members.count|pluralize}}</span></h5>
                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                         the
-                         card's content.</p>
-                     <a href="#" class="btn btn-primary">Go somewhere</a>
                          the card's content.</p>
                      {% if request.user.profile.neighbourhood != hood %}
-                     <a href="{% url 'join-hood' hood.id %}" class="btn btn-primary">Join Hood</a>
-                     {% elif request.user.profile.neighbourhood == hood %}
-                     <a href="" class="btn btn-outline-danger">Leave Hood</a>
-                     {% endif %}
-                 </div>
-             </div>
-         </div>
+                     {% if not request.user.profile.neighbourhood %}
+                     {% if request.user.profile.neighbourhood != hood %}
+                    <a href="{% url 'join-hood' hood.id %}" class="btn btn-primary">Join Hood</a>
+                    {% elif request.user.profile.neighbourhood == hood %}
+                    <a href="{% url 'leave-hood' hood.id %}" class="btn btn-outline-danger">Leave Hood</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+                    <a href="{% url 'join-hood' hood.id %}" class="btn btn-primary">Join Hood</a>
+                    {% elif request.user.profile.neighbourhood == hood %}
+                    <a href="{% url 'leave-hood' hood.id %}" class="btn btn-outline-danger">Leave Hood</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
         {% endfor %}
     </div>
 </div>
